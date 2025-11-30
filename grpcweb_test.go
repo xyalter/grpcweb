@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/soyuka/grpcweb"
+	"github.com/xyalter/grpcweb"
 )
 
 // TestHandler_EndToEnd performs an integration test of the Handler, simulating a full

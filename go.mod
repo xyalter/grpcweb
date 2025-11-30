@@ -1,4 +1,4 @@
-module github.com/soyuka/grpcweb
+module github.com/xyalter/grpcweb
 
 go 1.25.1
 
