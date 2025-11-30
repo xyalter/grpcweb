@@ -1,0 +1,19 @@
+{
+  "name": "Go Development Environment",
+  // Use the official Go Dev Container image. You can specify a version like "1.21-bookworm".
+  "image": "mcr.microsoft.com/devcontainers/go:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Essential Go extension
+        "golang.go",
+        // Docker extension for working with Dockerfiles and images
+        "ms-azuretools.vscode-docker",
+        // GitLens for enhanced Git capabilities
+        "eamodio.gitlens",
+        // Code Runner to run code snippets/files easily
+        "formulahendry.code-runner"
+      ]
+    }
+  }
+}
