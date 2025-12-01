@@ -65,9 +65,6 @@ func (fr *FrameReader) Read(p []byte) (n int, err error) {
 	}
 
 	length := binary.BigEndian.Uint32(frameHeader[1:])
-	if length == 0 {
-		return 0, nil
-	}
 
 	// Translate to gRPC message header (1 byte compression flag + 4 bytes length)
 	grpcHeader := make([]byte, 5)
@@ -75,8 +72,10 @@ func (fr *FrameReader) Read(p []byte) (n int, err error) {
 	binary.BigEndian.PutUint32(grpcHeader[1:], length)
 	fr.buffer.Write(grpcHeader)
 
-	if _, err := io.CopyN(&fr.buffer, fr.source, int64(length)); err != nil {
-		return 0, fmt.Errorf("error copying frame data: %w", err)
+	if length > 0 {
+		if _, err := io.CopyN(&fr.buffer, fr.source, int64(length)); err != nil {
+			return 0, fmt.Errorf("error copying frame data: %w", err)
+		}
 	}
 
 	return fr.buffer.Read(p)
